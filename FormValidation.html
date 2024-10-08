@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Validation</title>
+    <link rel="stylesheet" href="Assets/Css/styles.css" />
+  </head>
+  <body>
+    <div class="form-container">
+      <form id="signup-form">
+        <h2>Sign Up Form</h2>
+
+        <div class="form-group">
+          <label for="username">Username:</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            placeholder="Enter your username"
+          />
+          <small class="error-message"></small>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Enter your email"
+          />
+          <small class="error-message"></small>
+        </div>
+
+        <div class="form-group password-group">
+          <label for="password">Password:</label>
+          <div class="password-wrapper">
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Enter your password"
+            />
+            <button
+              type="button"
+              id="toggle-password"
+              class="toggle-password-btn"
+            >
+              Show
+            </button>
+          </div>
+          <small class="error-message"></small>
+          <div class="password-strength">
+            <span id="strength-text">Password strength: </span>
+            <div class="strength-bar" id="strength-bar"></div>
+          </div>
+          <ul class="password-requirements">
+            <li id="length" class="invalid">At least 8 characters</li>
+            <li id="uppercase" class="invalid">At least 1 uppercase letter</li>
+            <li id="number" class="invalid">At least 1 number</li>
+            <li id="special" class="invalid">
+              At least 1 special character (e.g. @, #, $)
+            </li>
+          </ul>
+        </div>
+        <div id="successModal" class="modal">
+          <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Success!</h2>
+            <p>Your form has been submitted successfully!</p>
+          </div>
+        </div>
+
+        <button type="submit">Sign Up</button>
+      </form>
+    </div>
+
+    <script src="Assets/JavaScript/script.js"></script>
+  </body>
+</html>

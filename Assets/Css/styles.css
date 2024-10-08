@@ -1,0 +1,230 @@
+body {
+    font-family: "Poppins", sans-serif;
+    background-color: #f0f0f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    padding: 20px;
+  }
+  
+  .form-container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    box-sizing: border-box;
+    text-align: center;
+  }
+  
+  h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .form-group {
+    margin-bottom: 25px;
+    text-align: left;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+    font-weight: 500;
+  }
+  
+  input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 5px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+    box-sizing: border-box;
+  }
+  
+  button {
+    width: 100%;
+    padding: 12px;
+    background-color: #6a5acd;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+  }
+  
+  button:hover {
+    background-color: #5548c8;
+  }
+  
+  .error-message {
+    color: red;
+    font-size: 12px;
+    visibility: hidden;
+  }
+  
+  .password-strength {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  #strength-text {
+    font-size: 14px;
+    margin-right: 10px;
+  }
+  
+  .strength-bar {
+    flex-grow: 1;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .strength-bar::after {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 0;
+    background-color: transparent;
+    transition: width 0.3s, background-color 0.3s;
+  }
+  
+  .strength-weak .strength-bar::after {
+    width: 30%;
+    background-color: red;
+  }
+  
+  .strength-medium .strength-bar::after {
+    width: 60%;
+    background-color: orange;
+  }
+  
+  .strength-strong .strength-bar::after {
+    width: 100%;
+    background-color: green;
+  }
+  
+  .password-requirements {
+    list-style-type: none;
+    padding-left: 0;
+    margin-top: 10px;
+  }
+  
+  .password-requirements li {
+    font-size: 12px;
+    color: #999;
+    margin-bottom: 5px;
+  }
+  
+  .password-requirements li.valid {
+    color: green;
+  }
+  
+  .password-requirements li.invalid {
+    color: red;
+  }
+  
+  .password-wrapper {
+    position: relative;
+  }
+  
+  input[type="password"],
+  input[type="text"] {
+    width: 100%;
+    padding-right: 40px;
+  }
+  
+  input:focus {
+    border-color: #6a5acd;
+    outline: none;
+  }
+  
+  .toggle-password-btn {
+    position: absolute;
+    right: -260px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 12px;
+    color: #6a5acd;
+    cursor: pointer;
+    padding: 5px;
+    padding-right: 250px;
+    pointer-events: auto;
+  }
+  
+  .toggle-password-btn:hover {
+    color: #5548c8;
+    background-color: transparent;
+  }
+  
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 0.5s ease;
+  }
+  
+  .modal-content h2 {
+    color: #28a745;
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+  
+  .modal-content p {
+    font-size: 16px;
+    color: #555;
+  }
+  
+  .close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #aaa;
+  }
+  
+  .close:hover {
+    color: #333;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
