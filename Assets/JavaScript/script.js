@@ -11,17 +11,36 @@ const uppercaseRequirement = document.getElementById('uppercase');
 const numberRequirement = document.getElementById('number');
 const specialRequirement = document.getElementById('special');
 
+username.addEventListener('input', function() {
+    const usernameValue = username.value.trim();
+    const usernameRegex = /^[a-zA-Z0-9_]+$/;
+
+    if (/\s/.test(usernameValue)) {
+        showError(username, 'Username cannot contain spaces.');
+    } else if (!usernameRegex.test(usernameValue)) {
+        showError(username, 'Username must only contain English letters and numbers.');
+    } else {
+        clearError(username);
+    }
+});
+
 function showError(input, message) {
     const formGroup = input.parentElement;
     const errorMessage = formGroup.querySelector('.error-message');
-    errorMessage.textContent = message;
-    errorMessage.style.visibility = 'visible';
+
+    if (errorMessage) {
+        errorMessage.textContent = message;
+        errorMessage.style.visibility = 'visible';
+    }
 }
 
 function clearError(input) {
     const formGroup = input.parentElement;
     const errorMessage = formGroup.querySelector('.error-message');
-    errorMessage.style.visibility = 'hidden';
+
+    if (errorMessage) { 
+        errorMessage.style.visibility = 'hidden';
+    }
 }
 
 function isValidEmail(email) {
@@ -77,16 +96,16 @@ password.addEventListener('input', function() {
 
     if (strength === 1) {
         strengthText.textContent = 'Password strength: Weak';
-        strengthBar.className = 'strength-bar strength-weak';
+        strengthBar.style.backgroundColor = 'red'; 
     } else if (strength === 2) {
         strengthText.textContent = 'Password strength: Medium';
-        strengthBar.className = 'strength-bar strength-medium';
-    } else if (strength === 3) {
+        strengthBar.style.backgroundColor = 'orange';
+    } else if (strength >= 3) {
         strengthText.textContent = 'Password strength: Strong';
-        strengthBar.className = 'strength-bar strength-strong';
+        strengthBar.style.backgroundColor = 'green'; 
     } else {
         strengthText.textContent = 'Password strength: ';
-        strengthBar.className = 'strength-bar';
+        strengthBar.style.backgroundColor = 'transparent';
     }
 });
 
@@ -105,20 +124,27 @@ form.addEventListener('submit', function(e) {
 
     let isValid = true;
 
-    if (username.value.trim() === '') {
+    const usernameValue = username.value.trim();
+    const usernameRegex = /^[a-zA-Z0-9_]+$/;
+
+    if (usernameValue === '') {
         showError(username, 'Username is required.');
         isValid = false;
-    } else if (isValidEmail(username.value.trim())) {
-        showError(username, 'Username cannot be an email.');
+    } else if (/\s/.test(usernameValue)) {
+        showError(username, 'Username cannot contain spaces.');
+        isValid = false;
+    } else if (!usernameRegex.test(usernameValue)) {
+        showError(username, 'Username must only contain English letters and numbers.');
         isValid = false;
     } else {
         clearError(username);
     }
 
-    if (email.value.trim() === '') {
+    const emailValue = email.value.trim();
+    if (emailValue === '') {
         showError(email, 'Email is required.');
         isValid = false;
-    } else if (!isValidEmail(email.value.trim())) {
+    } else if (!isValidEmail(emailValue)) {
         showError(email, 'Email is not valid.');
         isValid = false;
     } else {
@@ -132,17 +158,16 @@ form.addEventListener('submit', function(e) {
         showError(password, 'Password is required.');
         isValid = false;
     } else if (strength < 3) {
-        showError(password, 'Password is too weak.');
+        showError(password, 'Password must meet at least 3 conditions.');
         isValid = false;
     } else {
         clearError(password);
     }
 
     if (isValid) {
-        alert('Form submitted successfully!');
+        setTimeout(showModal, 1000);
     }
 });
-
 
 const successModal = document.getElementById('successModal');
 const closeModalBtn = document.querySelector('.close');
@@ -160,16 +185,5 @@ closeModalBtn.addEventListener('click', hideModal);
 window.addEventListener('click', function(event) {
     if (event.target === successModal) {
         hideModal();
-    }
-});
-
-form.addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    let isValid = true;
-
-
-    if (isValid) {
-        showModal();
     }
 });
